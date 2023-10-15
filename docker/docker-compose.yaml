@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  ci-qt-project:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: ci_image
+#      set up this var on your local_machine
+    image: ${CI_REGISTRY_IMAGE}:latest
+
+  qt-project:
+    container_name: qt-devel
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: devel_image
+    image: qt-devel:latest
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    network_mode: host
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - $HOME/.Xauthority:/root/.Xauthority
+      - $HOME/.ssh:/home/devel-docker/.ssh:ro
+      - $HOME/.gitconfig:/home/qt-docker/.gitconfig:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /$WORKDIR_PATH/:/home/qt-docker/university
+      - /${IDE_PATH}/:/home/qt-docker/jetbrains

@@ -1,15 +1,19 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include "cloudswisualizer.h"
+
+static QVector<QVector3D> TEST_MAP_POINTS = {{0.5, 0.5, 0.0}, {0.5, 0.0, 0.0}, {0.5, 0.5, -1.0}, {0.5, 0.0, -2.0}, {0.0, 0.0, -1.0}};
 
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    CloudsWisualizer cloud_wis_;
+    cloud_wis_.setWindowTitle("Cloud Tool");
+    cloud_wis_.resize(500, 500);
+    cloud_wis_.draw_map(TEST_MAP_POINTS);
+    cloud_wis_.show();
 
-    if (engine.rootObjects().empty())
-        return -1;
     return app.exec();
 }
 

@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>occupancy_grid.png</file>
-    </qresource>
-</RCC>

@@ -17,9 +17,11 @@ public:
     CloudsDrawler(const GL_Color& color);
 
     void set_points(const QVector<QVector3D>& points);
+    void draw() override;
 
 private:
     GL_Color cloud_color_;
 
-    void draw_() override;
+    void check_contexst_();
+    void initialise_buffer_();
 };

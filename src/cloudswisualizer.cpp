@@ -2,49 +2,43 @@
 
 #include <math.h>
 
+#include <QOpenGLContext>
+
 namespace  {
-constexpr float ROTATE_COEF = 0.5;
+constexpr float ROTATE_COEF = 0.1;
 
-GL_Color MAP_COLOR = {0.5, 0.27, 0.07};
-GL_Color SONAT_COLOR = {0.5, 0.27, 0.07};
+GL_Color MAP_COLOR = {1.0, 0.0, 0.0};
+GL_Color SONAR_COLOR = {0.0, 1.0, 0.0};
 
-void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar )
+void perspectiveGL(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar)
 {
-    GLdouble fW = 0.0;
-    GLdouble fH = 0.0;
-
-    fH = tan( fovY / 360 * M_PI ) * zNear;
-    fW = fH * aspect;
+    GLdouble fH = tan( fovY / 360 * M_PI ) * zNear;;
+    GLdouble fW = fH * aspect;
 
     glFrustum( -fW, fW, -fH, fH, zNear, zFar );
 }
+
 } // end namespace
 
-CloudsWisualizer::CloudsWisualizer(QWidget *parent): QOpenGLWidget(parent)
+CloudsWisualizer::CloudsWisualizer(QWidget *parent): QOpenGLWidget(parent), map_drawler_(MAP_COLOR), sonar_drawler_(SONAR_COLOR)
 {
-    vehicle_drawler_ = std::make_unique<ModelDrawler>();
-    map_drawler_ = std::make_unique<CloudsDrawler>(MAP_COLOR);
-    sonar_drawler_ = std::make_unique<CloudsDrawler>(SONAT_COLOR);
 }
 
 void CloudsWisualizer::draw_map(const QVector<QVector3D> &points)
 {
-    map_drawler_->set_points(points);
-
+    map_drawler_.set_points(points);
     update();
 }
 
 void CloudsWisualizer::draw_sonar_data(const QVector<QVector3D> &points)
 {
-    sonar_drawler_->set_points(points);
-
+    sonar_drawler_.set_points(points);
     update();
 }
 
-void CloudsWisualizer::draw_vehicle(const QVector3D &pose)
+void CloudsWisualizer::draw_vehicle(const QVector3D &pose, const QQuaternion& quaternion)
 {
-    vehicle_drawler_->set_position(pose);
-
+    vehicle_drawler_.set_position(pose, quaternion);
     update();
 }
 
@@ -61,10 +55,10 @@ void CloudsWisualizer::initializeGL()
 
 void CloudsWisualizer::resizeGL(int w, int h)
 {
-    float aspect = w / (float)h;
     glMatrixMode(GL_PROJECTION);
-
     glLoadIdentity();
+
+    float aspect = w / (float)h;
     perspectiveGL(45, aspect, 0.1f, 10.0f);
 
     glViewport(0.0, 0.0, (GLint)w, (GLint)h);
@@ -79,11 +73,13 @@ void CloudsWisualizer::paintGL()
     view_matrix.translate(0.0, 0.0, -0.5);
     view_matrix.rotate(view_rotation_);
 
+    glMatrixMode(GL_MODELVIEW);
+
     glLoadMatrixf(view_matrix.constData());
 
-    map_drawler_->draw(context(), context()->surface());
-    sonar_drawler_->draw(context(), context()->surface());
-    vehicle_drawler_->draw(context(), context()->surface());
+    map_drawler_.draw();
+    sonar_drawler_.draw();
+    vehicle_drawler_.draw();
 }
 
 void CloudsWisualizer::mousePressEvent(QMouseEvent *event)
@@ -102,10 +98,11 @@ void CloudsWisualizer::mouseMoveEvent(QMouseEvent *event)
 
     QVector2D new_mouse_pose = QVector2D(event->localPos());
     QVector2D diff = new_mouse_pose - prev_mouse_position_;
+    prev_mouse_position_ = new_mouse_pose;
 
-    float angle = diff.length();
+    float angle = diff.length() * ROTATE_COEF;
 
-    QVector3D axis = QVector3D(diff.x(), diff.y(), 0.0) * ROTATE_COEF;
+    QVector3D axis = QVector3D(diff.y(), diff.x(), 0.0);
 
     view_rotation_ = QQuaternion::fromAxisAndAngle(axis, angle) * view_rotation_;
 

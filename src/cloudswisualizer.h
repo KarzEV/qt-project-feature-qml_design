@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include <QOpenGLWidget>
 #include <QMatrix4x4>
 #include <QVector>
@@ -24,7 +22,7 @@ public:
 public slots:
     void draw_map(const QVector<QVector3D>& points);
     void draw_sonar_data(const QVector<QVector3D>& points);
-    void draw_vehicle(const QVector3D& pose);
+    void draw_vehicle(const QVector3D& pose, const QQuaternion& quaternion);
 
 protected:
     void initializeGL() override;
@@ -34,9 +32,9 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
 
 private:
-    std::unique_ptr<CloudsDrawler> map_drawler_;
-    std::unique_ptr<CloudsDrawler> sonar_drawler_;
-    std::unique_ptr<ModelDrawler> vehicle_drawler_;
+    CloudsDrawler map_drawler_;
+    CloudsDrawler sonar_drawler_;
+    ModelDrawler vehicle_drawler_;
 
     QVector2D prev_mouse_position_;
     QQuaternion view_rotation_;

@@ -13,8 +13,8 @@ add_definitions(${Qt5Widgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${Qt5Quick_DEFI
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/cloudswisualizer.cpp
-        src/cloudswisualizer.h
+        src/cloudsvisualizer.cpp
+        src/cloudsvisualizer.h
         src/cloudsdrawler.cpp
         src/cloudsdrawler.h
         src/modeldrawler.cpp

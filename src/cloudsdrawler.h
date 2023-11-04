@@ -2,15 +2,9 @@
 
 #include <QVector>
 #include <QVector3D>
-#include <QColor>
 
 #include "basedrawler.h"
-
-struct GL_Color {
-    float r = 0.0;
-    float g = 0.0;
-    float b = 0.0;
-};
+#include "types.h"
 
 class CloudsDrawler: public BaseDrawler {
 public:
@@ -22,6 +16,5 @@ public:
 private:
     GL_Color cloud_color_;
 
-    void check_contexst_();
     void initialise_buffer_();
 };

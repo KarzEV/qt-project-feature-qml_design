@@ -2,8 +2,6 @@
 
 #include <stdexcept>
 
-#include <QOpenGLContext>
-
 CloudsDrawler::CloudsDrawler(const GL_Color& color):
     BaseDrawler(), cloud_color_(color)
 {
@@ -14,7 +12,7 @@ void CloudsDrawler::set_points(const QVector<QVector3D> &points)
     check_contexst_();
 
     if(!vertex_buffer_.isCreated()) {
-        initialise_buffer_();
+        initialise_vertex_buffer_();
     }
 
     if(!vertex_buffer_.bind()) {
@@ -50,19 +48,4 @@ void CloudsDrawler::draw()
     }
 
     vertex_buffer_.release();
-}
-
-void CloudsDrawler::check_contexst_()
-{
-    if(!QOpenGLContext::currentContext()->isValid() || QOpenGLContext::currentContext()->isOpenGLES()) {
-        throw std::runtime_error("CloudsDrawler: contexst not set");
-    }
-}
-
-void CloudsDrawler::initialise_buffer_()
-{
-    if(!vertex_buffer_.create()) {
-        throw std::runtime_error("CloudsDrawler: buffer not created");
-    }
-    vertex_buffer_.setUsagePattern(QOpenGLBuffer::DynamicDraw);
 }

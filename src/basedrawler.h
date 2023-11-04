@@ -17,4 +17,7 @@ protected:
     QOpenGLBuffer vertex_buffer_;
 
     QMatrix4x4 model_matrix_;
+
+    void check_contexst_() const;
+    void initialise_vertex_buffer_();
 };

@@ -8,6 +8,7 @@ namespace  {
 
 GL_Color MAP_COLOR = {1.0, 0.0, 0.0};
 GL_Color SONAR_COLOR = {0.0, 1.0, 0.0};
+GL_Color VEHICLE_COLOR = {1.0, 1.0, 0.0};
 
 void perspectiveGL(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar)
 {
@@ -19,7 +20,8 @@ void perspectiveGL(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar
 
 } // end namespace
 
-CloudsVisualizer::CloudsVisualizer(QWidget *parent): QOpenGLWidget(parent), map_drawler_(MAP_COLOR), sonar_drawler_(SONAR_COLOR)
+CloudsVisualizer::CloudsVisualizer(const QString& vehicle_model_path, QWidget *parent): QOpenGLWidget(parent),
+    map_drawler_(MAP_COLOR), sonar_drawler_(SONAR_COLOR), vehicle_drawler_(VEHICLE_COLOR, vehicle_model_path)
 {
     reset_view_matrix_();
 }
@@ -143,10 +145,10 @@ void CloudsVisualizer::translate_camera_(QMouseEvent *event)
 {
     constexpr float TRANSLATE_COEF = 0.0001;
     QVector2D diff = processing_mouse_move_(event) * TRANSLATE_COEF;
-
+    diff.setY(-diff.y());
     QVector3D transformed_diff = view_matrix_.inverted().mapVector(diff.toVector3D());
 
-    view_matrix_.translate(transformed_diff.x(), -transformed_diff.y(), transformed_diff.z());
+    view_matrix_.translate(transformed_diff.x(), transformed_diff.y(), transformed_diff.z());
 }
 
 QVector2D CloudsVisualizer::processing_mouse_move_(QMouseEvent *event)

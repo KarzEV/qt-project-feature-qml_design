@@ -9,6 +9,7 @@
 #include <QQuaternion>
 #include <QWheelEvent>
 #include <QKeyEvent>
+#include <QString>
 
 #include "cloudsdrawler.h"
 #include "modeldrawler.h"
@@ -18,7 +19,7 @@ class CloudsVisualizer : public QOpenGLWidget
     Q_OBJECT
 
 public:
-    explicit CloudsVisualizer(QWidget *parent = nullptr);
+    explicit CloudsVisualizer(const QString& vehicle_model_path = "", QWidget *parent = nullptr);
     ~CloudsVisualizer() = default;
 
 public slots:

@@ -21,6 +21,9 @@ add_executable(${PROJECT_NAME}
         src/modeldrawler.h
         src/basedrawler.cpp
         src/basedrawler.h
+        src/utils.cpp
+        src/utils.h
+        src/types.h
 )
 
 target_link_libraries(${PROJECT_NAME}

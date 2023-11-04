@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 project(qt-gui)
 
-set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
@@ -11,19 +11,37 @@ find_package(Qt5 COMPONENTS COMPONENTS Widgets Qml Quick Charts OpenGL REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
 add_definitions(${Qt5Widgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${Qt5Quick_DEFINITIONS}})
 
-add_executable(${PROJECT_NAME}
-        src/main.cpp
-        src/cloudsvisualizer.cpp
-        src/cloudsvisualizer.h
-        src/cloudsdrawler.cpp
-        src/cloudsdrawler.h
-        src/modeldrawler.cpp
-        src/modeldrawler.h
-        src/basedrawler.cpp
-        src/basedrawler.h
-        src/utils.cpp
-        src/utils.h
-        src/types.h
+set(SOURCES
+    src/main.cpp
+    src/cloudsvisualizer.cpp
+    src/cloudsdrawler.cpp
+    src/modeldrawler.cpp
+    src/basedrawler.cpp
+    src/utils.cpp
+    src/mainwindow.cpp
+)
+
+set(MOC_HEADERS
+    src/cloudsvisualizer.h
+    src/cloudsdrawler.h
+    src/modeldrawler.h
+    src/basedrawler.h
+    src/utils.h
+    src/types.h
+    src/mainwindow.h
+)
+
+set(UIS
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui
+)
+
+qt5_wrap_ui(SOURCES ${UIS})
+
+add_executable(${PROJECT_NAME} ${MOC_HEADERS} ${SOURCES} ${MOC_SRCS} ${UIS})
+
+target_include_directories(${PROJECT_NAME}
+        PRIVATE
+        ${PROJECT_BINARY_DIR}
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -33,8 +51,7 @@ target_link_libraries(${PROJECT_NAME}
         Qt5::Quick
         Qt5::Charts
         Qt5::OpenGL
+        Qt5::Widgets
         ${OPENGL_LIBRARIES}
         ${GLUT_LIBRARY}
 )
-
-

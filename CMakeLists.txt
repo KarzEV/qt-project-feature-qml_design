@@ -19,6 +19,7 @@ set(SOURCES
     src/basedrawler.cpp
     src/utils.cpp
     src/mainwindow.cpp
+    src/vehiclestatetable.cpp
 )
 
 set(MOC_HEADERS
@@ -29,10 +30,12 @@ set(MOC_HEADERS
     src/utils.h
     src/types.h
     src/mainwindow.h
+    src/vehiclestatetable.h
 )
 
 set(UIS
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui
+    src/mainwindow.ui
+    src/vehiclestatetable.ui
 )
 
 qt5_wrap_ui(SOURCES ${UIS})

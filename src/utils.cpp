@@ -90,3 +90,8 @@ QVector<QVector3D> parse_OBJ(const QString &path)
 
     return base_pars(path, parser);
 }
+
+EulerKrylovAngles convert_to_angles(const QQuaternion &quaternion)
+{
+    return EulerKrylovAngles();
+}

@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QVector>
@@ -7,6 +6,7 @@
 #include <QQuaternion>
 
 #include "cloudsvisualizer.h"
+#include "vehiclestatetable.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +29,5 @@ private:
     Ui::MainWindow *ui;
 
     CloudsVisualizer* clouds_vis_;
+    VehicleStateTable* vehicle_state_table_;
 };
-
-#endif // MAINWINDOW_H

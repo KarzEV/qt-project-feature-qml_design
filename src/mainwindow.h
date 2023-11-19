@@ -7,6 +7,8 @@
 
 #include "cloudsvisualizer.h"
 #include "vehiclestatetable.h"
+#include "compass.h"
+#include "attitudeindicator.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,4 +32,9 @@ private:
 
     CloudsVisualizer* clouds_vis_;
     VehicleStateTable* vehicle_state_table_;
+
+    AttitudeIndicator* attitude_ind_;
+    Compass* compass_;
+
+    void setup_layout(const QString& vehicle_model_path);
 };

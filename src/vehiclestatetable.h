@@ -4,6 +4,8 @@
 #include <QVector3D>
 #include <QQuaternion>
 
+#include "types.h"
+
 namespace Ui {
 class vehicle_state_table;
 }
@@ -17,7 +19,7 @@ public:
     ~VehicleStateTable();
 
 public slots:
-    void set_vehicle_state(const QVector3D &pose, const QQuaternion& quaternion);
+    void set_vehicle_state(const QVector3D &pose, const EulerKrylovAngles& angles);
 
 private:
     Ui::vehicle_state_table *ui;

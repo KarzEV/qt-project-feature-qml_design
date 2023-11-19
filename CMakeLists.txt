@@ -20,6 +20,8 @@ set(SOURCES
     src/utils.cpp
     src/mainwindow.cpp
     src/vehiclestatetable.cpp
+    src/attitudeindicator.cpp
+    src/compass.cpp
 )
 
 set(MOC_HEADERS
@@ -31,6 +33,8 @@ set(MOC_HEADERS
     src/types.h
     src/mainwindow.h
     src/vehiclestatetable.h
+    src/attitudeindicator.h
+    src/compass.h
 )
 
 set(UIS

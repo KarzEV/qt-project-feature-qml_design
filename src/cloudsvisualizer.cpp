@@ -8,7 +8,7 @@ namespace  {
 
 GL_Color MAP_COLOR = {1.0, 0.0, 0.0};
 GL_Color SONAR_COLOR = {0.0, 1.0, 0.0};
-GL_Color VEHICLE_COLOR = {1.0, 1.0, 0.0};
+GL_Color VEHICLE_COLOR = {1.0, 0.5, 0.0};
 
 void perspectiveGL(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar)
 {
@@ -61,7 +61,7 @@ void CloudsVisualizer::resizeGL(int w, int h)
     glLoadIdentity();
 
     float aspect = w / (float)h;
-    perspectiveGL(45, aspect, 0.1f, 10.0f);
+    perspectiveGL(45, aspect, 0.1f, 100.0f);
 
     glViewport(0.0, 0.0, (GLint)w, (GLint)h);
 }

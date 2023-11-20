@@ -40,6 +40,10 @@ QVector<QVector3D> parse_CSV(const QString &path)
 
             QStringList string_list = line.split(',');
 
+            if(string_list.empty()) {
+                continue;
+            }
+
             if(!(string_list.size() == 3)) {
                 throw std::invalid_argument("parse_CSV: incorrect line value, must be 3");
             }
@@ -63,8 +67,9 @@ QVector<QVector3D> parse_OBJ(const QString &path)
 
             if(string_list.empty() || string_list[0] == '#' ||
                string_list[0] == "vt" || string_list[0] == "vn" ||
-               string_list[0] == "mtllib") {
-                return;
+               string_list[0] == "mtllib" || string_list[0] == "o" ||
+               string_list[0] == "usemtl" || string_list[0] == "s") {
+                continue;
             }
 
             if(!(string_list.size() == 4)) {

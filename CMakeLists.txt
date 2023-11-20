@@ -42,9 +42,14 @@ set(UIS
     src/vehiclestatetable.ui
 )
 
-qt5_wrap_ui(SOURCES ${UIS})
+set(RESOURCES
+    src/models.qrc
+)
 
-add_executable(${PROJECT_NAME} ${MOC_HEADERS} ${SOURCES} ${MOC_SRCS} ${UIS})
+qt5_wrap_ui(SOURCES ${UIS})
+qt5_add_resources (RCC_SOURCES ${RESOURCES})
+
+add_executable(${PROJECT_NAME} ${MOC_HEADERS} ${SOURCES} ${MOC_SRCS} ${UIS} ${RCC_SOURCES})
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE

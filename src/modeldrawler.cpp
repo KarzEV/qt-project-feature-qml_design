@@ -27,16 +27,20 @@ void ModelDrawler::draw()
         glColor3d(model_color_.r, model_color_.g, model_color_.b);
 
         glVertexPointer(3, GL_FLOAT, 0, 0);
-
+        glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
 
-        GLfloat gl_transform[16];
-        for(int i = 0; i < 4; ++i)
-           for(int j = 0; j < 4; ++j)
-               gl_transform[i*4 + j] = model_matrix_(i, j);
+        float gl_transform[16];
+        for(int i = 0; i < 4; ++i) {
+           for(int j = 0; j < 4; ++j) {
+               gl_transform[i*4 + j] = model_matrix_.transposed()(i, j);
+           }
+        }
 
         glMultMatrixf(gl_transform);
         glDrawArrays(GL_TRIANGLES, 0, vertex_buffer_.size() / sizeof(QVector3D));
+        draw_axis_();
+
         glPopMatrix();
     }
 
@@ -54,4 +58,20 @@ void ModelDrawler::setup_model_data_()
     auto vertexses = parse_OBJ(path_);
     vertex_buffer_.allocate(vertexses.constData(), vertexses.size() * sizeof(QVector3D));
     vertex_buffer_.release();
+}
+
+void ModelDrawler::draw_axis_()
+{
+    glLineWidth(3.0f);
+    glBegin(GL_LINES);
+       glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+       glVertex3f(1.5f,  0.0f,  0.0f);
+       glVertex3f(-1.5f,  0.0f,  0.0f);
+       glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+       glVertex3f(0.0f,  1.5f,  0.0f);
+       glVertex3f(0.0f, -1.5f,  0.0f);
+       glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+       glVertex3f(0.0f,  0.0f,  1.5f);
+       glVertex3f(0.0f,  0.0f, -1.5f);
+    glEnd();
 }

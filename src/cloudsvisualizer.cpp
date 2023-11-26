@@ -143,7 +143,7 @@ void CloudsVisualizer::rotate_camera_(QMouseEvent *event)
 
 void CloudsVisualizer::translate_camera_(QMouseEvent *event)
 {
-    constexpr float TRANSLATE_COEF = 0.0001;
+    constexpr float TRANSLATE_COEF = 0.0005;
     QVector2D diff = processing_mouse_move_(event) * TRANSLATE_COEF;
     diff.setY(-diff.y());
     QVector3D transformed_diff = view_matrix_.inverted().mapVector(diff.toVector3D());
@@ -163,5 +163,9 @@ QVector2D CloudsVisualizer::processing_mouse_move_(QMouseEvent *event)
 void CloudsVisualizer::reset_view_matrix_()
 {
     view_matrix_.setToIdentity();
-    view_matrix_.translate(0.0, 0.0, -0.5);
+    view_matrix_.translate(0.0, 0.0, -2.0);
+
+    QVector3D axis = QVector3D(1.0, 0.0, 0.0);
+
+    view_matrix_.rotate(QQuaternion::fromAxisAndAngle(axis, 90));
 }

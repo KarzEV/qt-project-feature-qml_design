@@ -21,4 +21,5 @@ private:
     QString path_;
 
     void setup_model_data_();
+    void draw_axis_();
 };

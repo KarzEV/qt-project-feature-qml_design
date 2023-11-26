@@ -25,7 +25,7 @@ public:
 public slots:
     void draw_map(const QVector<QVector3D>& points);
     void draw_sonar_data(const QVector<QVector3D>& points);
-    void draw_vehicle(const QVector3D& pose, const QQuaternion& quaternion);
+    void draw_vehicle(const QVector3D& pose, const QQuaternion& quaternion = QQuaternion());
 
 private:
     Ui::MainWindow *ui;

@@ -38,3 +38,6 @@ BUILD
 
 # docker
 *.env
+
+#scripts dir
+scripts/*

@@ -23,7 +23,7 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 
 protected:
-    int m_sizeMin_ = 400;
+    int m_sizeMin_ = 220;
     int m_sizeMax_ = 600;
     int m_size_ = 0;
     int m_offset_ = 2;

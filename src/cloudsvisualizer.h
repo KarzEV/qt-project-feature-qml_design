@@ -26,6 +26,7 @@ public slots:
     void draw_map(const QVector<QVector3D>& points);
     void draw_sonar_data(const QVector<QVector3D>& points);
     void draw_vehicle(const QVector3D& pose, const QQuaternion& quaternion);
+    void keyPressEvent(QKeyEvent* pe) override;
 
 protected:
     void initializeGL() override;
@@ -34,7 +35,6 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent* pe) override;
-    void keyPressEvent(QKeyEvent* pe) override;
 
 private:
     CloudsDrawler map_drawler_;

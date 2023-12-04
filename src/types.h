@@ -7,7 +7,7 @@ struct GL_Color {
 };
 
 struct EulerKrylovAngles {
-    float cource;
-    float roll;
-    float pitch;
+    float cource = 0.0;
+    float roll = 0.0;
+    float pitch = 0.0;
 };

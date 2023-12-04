@@ -22,6 +22,7 @@ set(SOURCES
     src/vehiclestatetable.cpp
     src/attitudeindicator.cpp
     src/compass.cpp
+    src/testwidget.cpp
 )
 
 set(MOC_HEADERS
@@ -35,11 +36,13 @@ set(MOC_HEADERS
     src/vehiclestatetable.h
     src/attitudeindicator.h
     src/compass.h
+    src/testwidget.h
 )
 
 set(UIS
     src/mainwindow.ui
     src/vehiclestatetable.ui
+    src/testwidget.ui
 )
 
 set(RESOURCES

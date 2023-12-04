@@ -1,5 +1,6 @@
 #include "utils.h"
 
+#include <math.h>
 #include <stdexcept>
 #include <functional>
 
@@ -24,6 +25,18 @@ QVector<QVector3D> base_pars(const QString &path,
     parser(input, vertexses);
 
     return vertexses;
+}
+
+EulerKrylovAngles to_radians(const EulerKrylovAngles &angles) {
+    constexpr float koefficient = M_PI / 180;
+
+    EulerKrylovAngles radian_angles;
+
+    radian_angles.cource = angles.cource * koefficient;
+    radian_angles.roll = angles.roll * koefficient;
+    radian_angles.pitch = angles.pitch * koefficient;
+
+    return radian_angles;
 }
 
 }
@@ -99,4 +112,23 @@ QVector<QVector3D> parse_OBJ(const QString &path)
 EulerKrylovAngles convert_to_angles(const QQuaternion &quaternion)
 {
     return EulerKrylovAngles();
+}
+
+QQuaternion convert_to_quaternion(const EulerKrylovAngles &angles)
+{
+    auto radian_angles = to_radians(angles);
+
+    double L0 = std::cos(radian_angles.roll / 2) * std::cos(radian_angles.pitch / 2) * std::cos(radian_angles.cource / 2) -
+            std::sin(radian_angles.roll / 2) * std::sin(radian_angles.pitch / 2) * std::sin(radian_angles.cource / 2);
+
+    double L1 = std::cos(radian_angles.roll / 2) * std::sin(radian_angles.pitch / 2) * std::sin(radian_angles.cource / 2) +
+            std::sin(radian_angles.roll / 2) * std::cos(radian_angles.pitch / 2) * std::cos(radian_angles.cource / 2);
+
+    double L2 = std::cos(radian_angles.roll / 2) * std::cos(radian_angles.pitch / 2) * std::sin(radian_angles.cource / 2) +
+            std::sin(radian_angles.roll / 2) * std::sin(radian_angles.pitch / 2) * std::cos(radian_angles.cource / 2);
+
+    double L3 = std::cos(radian_angles.roll / 2) * std::sin(radian_angles.pitch / 2) * std::cos(radian_angles.cource / 2) -
+            std::sin(radian_angles.roll / 2) * std::cos(radian_angles.pitch / 2) * std::sin(radian_angles.cource / 2);
+
+    return QQuaternion(L0, QVector3D(L1, L2, L3));
 }

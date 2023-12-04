@@ -4,6 +4,8 @@
 
 void ModelDrawler::set_position(const QVector3D &pose, const QQuaternion& quaternion)
 {
+    model_matrix_.setToIdentity();
+
     model_matrix_.translate(pose);
     model_matrix_.rotate(quaternion);
 }
@@ -66,12 +68,12 @@ void ModelDrawler::draw_axis_()
     glBegin(GL_LINES);
        glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
        glVertex3f(1.5f,  0.0f,  0.0f);
-       glVertex3f(-1.5f,  0.0f,  0.0f);
+       glVertex3f(0.0f,  0.0f,  0.0f);
        glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
        glVertex3f(0.0f,  1.5f,  0.0f);
-       glVertex3f(0.0f, -1.5f,  0.0f);
+       glVertex3f(0.0f, 0.0f,  0.0f);
        glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
        glVertex3f(0.0f,  0.0f,  1.5f);
-       glVertex3f(0.0f,  0.0f, -1.5f);
+       glVertex3f(0.0f,  0.0f, 0.0f);
     glEnd();
 }

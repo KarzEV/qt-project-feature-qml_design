@@ -1,8 +1,8 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 
-#include "mainwindow.h"
-#include "utils.h"
+#include <rov_gui_package/mainwindow.h>
+#include <rov_gui_package/utils.h>
 
 void set_test_data(MainWindow& main_window) {
     const QVector<QVector3D> TEST_MAP_POINTS = parse_CSV(":/resources/test_map.csv");

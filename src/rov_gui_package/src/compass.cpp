@@ -1,4 +1,4 @@
-#include "compass.h"
+#include <rov_gui_package/compass.h>
 
 #include <QPainter>
 #include <QBrush>

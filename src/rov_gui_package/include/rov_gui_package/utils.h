@@ -12,3 +12,4 @@ QVector<QVector3D> parse_OBJ(const QString& path);
 
 EulerKrylovAngles convert_to_angles(const QQuaternion &quaternion);
 QQuaternion convert_to_quaternion(const EulerKrylovAngles &angles);
+

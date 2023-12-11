@@ -1,6 +1,6 @@
-#include "modeldrawler.h"
+#include <rov_gui_package/modeldrawler.h>
 
-#include "utils.h"
+#include <rov_gui_package/utils.h>
 
 void ModelDrawler::set_position(const QVector3D &pose, const QQuaternion& quaternion)
 {

@@ -42,3 +42,4 @@ private:
 };
 
 #endif // TESTWIDGET_H
+

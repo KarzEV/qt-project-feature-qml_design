@@ -1,10 +1,10 @@
-#include "mainwindow.h"
+#include <rov_gui_package/mainwindow.h>
 #include "ui_mainwindow.h"
 
 #include <QHBoxLayout>
 #include <QSizePolicy>
 
-#include "utils.h"
+#include <rov_gui_package/utils.h>
 
 MainWindow::MainWindow(const QString& vehicle_model_path, QWidget *parent) :
     QMainWindow(parent),

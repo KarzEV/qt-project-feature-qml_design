@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rov_gui_package</name>
+  <version>1.0.0</version>
+  <description>The GUI package of autonomus vehicle</description>
+
+  <maintainer email="TODO"></maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+
+  <export>
+
+  </export>
+</package>
+

@@ -1,4 +1,4 @@
-#include "attitudeindicator.h"
+#include <rov_gui_package/attitudeindicator.h>
 
 #include <math.h>
 

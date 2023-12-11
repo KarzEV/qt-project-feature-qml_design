@@ -11,3 +11,4 @@ struct EulerKrylovAngles {
     float roll = 0.0;
     float pitch = 0.0;
 };
+

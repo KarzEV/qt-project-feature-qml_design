@@ -1,4 +1,4 @@
-#include "vehiclestatetable.h"
+#include <rov_gui_package/vehiclestatetable.h>
 #include "ui_vehiclestatetable.h"
 
 #include <QString>

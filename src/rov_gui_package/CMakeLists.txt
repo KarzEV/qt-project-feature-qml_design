@@ -12,6 +12,7 @@ set(ROS_DEPENDS
   roscpp
   std_msgs
   std_srvs
+  rov_msgs_package
 )
 
 find_package(OpenGL REQUIRED)
@@ -52,6 +53,7 @@ set(SOURCES
     src/attitudeindicator.cpp
     src/compass.cpp
     src/testwidget.cpp
+    src/shell.cpp
 )
 
 set(MOC_HEADERS
@@ -66,6 +68,7 @@ set(MOC_HEADERS
     include/rov_gui_package/attitudeindicator.h
     include/rov_gui_package/compass.h
     include/rov_gui_package/testwidget.h
+    include/rov_gui_package/shell.h
 )
 
 set(UIS
@@ -89,6 +92,7 @@ get_filename_component(NODE_NAME ${NODE} NAME_WE)
 message("bilding - " ${NODE_NAME})
 
 add_executable(${NODE_NAME} ${NODE} ${MOC_HEADERS} ${SOURCES} ${MOC_SRCS} ${UIS} ${RCC_SOURCES})
+add_dependencies(${NODE_NAME} rov_msgs_package_generate_messages_cpp)
 
 target_include_directories(${NODE_NAME}
         PRIVATE

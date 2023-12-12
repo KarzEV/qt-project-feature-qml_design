@@ -44,3 +44,5 @@ scripts/*
 
 #ros
 devel/lib
+devel/include
+devel/share

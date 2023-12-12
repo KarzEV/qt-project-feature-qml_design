@@ -1,0 +1,4 @@
+std_msgs/Header header
+
+geometry_msgs/Point32 vehicle_point
+geometry_msgs/Quaternion vehicle_orientation

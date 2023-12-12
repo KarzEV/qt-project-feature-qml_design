@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.10)
 
 get_filename_component(PACKAGE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 message("Creating Package: ${PACKAGE_NAME}")
@@ -11,7 +11,7 @@ set(CMAKE_AUTOUIC ON)
 set(ROS_DEPENDS
   roscpp
   std_msgs
-  std_srv
+  std_srvs
 )
 
 find_package(OpenGL REQUIRED)
@@ -69,9 +69,9 @@ set(MOC_HEADERS
 )
 
 set(UIS
-    include/rov_gui_package/mainwindow.ui
-    include/rov_gui_package/vehiclestatetable.ui
-    include/rov_gui_package/testwidget.ui
+    src/mainwindow.ui
+    src/vehiclestatetable.ui
+    src/testwidget.ui
 )
 
 set(RESOURCES

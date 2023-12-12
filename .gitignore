@@ -41,3 +41,6 @@ BUILD
 
 #scripts dir
 scripts/*
+
+#ros
+devel/lib

@@ -4,7 +4,7 @@
   <version>1.0.0</version>
   <description>The GUI package of autonomus vehicle</description>
 
-  <maintainer email="TODO"></maintainer>
+  <maintainer email="ewegexa@gmail.com">Eugene Baranov</maintainer>
 
   <license>TODO</license>
 
@@ -12,6 +12,7 @@
 
   <depend>roscpp</depend>
   <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
 
   <export>
 

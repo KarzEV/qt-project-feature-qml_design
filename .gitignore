@@ -46,3 +46,7 @@ scripts/*
 devel/lib
 devel/include
 devel/share
+
+# user files
+*.save
+*.user

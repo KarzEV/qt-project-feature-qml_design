@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rov_localization_package</name>
+  <version>1.0.0</version>
+  <description>The localization stack of autonomus vehicle</description>
+
+  <maintainer email="ewegexa@gmail.com">Eugene Baranov</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>rov_msgs_package</depend>
+
+  <export>
+
+  </export>
+</package>
+

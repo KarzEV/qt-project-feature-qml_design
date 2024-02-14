@@ -5,8 +5,13 @@ message("Creating Package: ${PACKAGE_NAME}")
 
 project(${PACKAGE_NAME})
 
+if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+	add_compile_options(-w)
+endif()
+
 set(ROS_DEPENDS
   roscpp
+  roslib
   std_msgs
   std_srvs
   sensor_msgs

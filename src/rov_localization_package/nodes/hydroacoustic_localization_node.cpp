@@ -79,7 +79,7 @@ public:
     HydroacousticLocalizationNode() {
         ros::NodeHandle nh;
 
-        auto package_path = ros::package::getPath(ROS_PACKAGE_NAME);
+        auto package_path = ros::package::getPath("rov_localization_package");
         auto config_path = package_path + "/config/localization_config.yaml";
         auto map_path = package_path + "/map/map.pcd";
         auto params = load_config(config_path);
@@ -104,7 +104,7 @@ public:
         try {
             localization_pub_.publish(to_ros(mather_manager_->step()));
         } catch (const std::exception &exp) {
-            ROS_WARN(exp.what());
+            ROS_WARN("%s", exp.what());
         }
     }
 
@@ -129,7 +129,7 @@ private:
 } // end namespace rov_localization
 
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "parking_planner_node");
+    ros::init(argc, argv, "localization_node");
     rov_localization::HydroacousticLocalizationNode hydro_localization_node;
     ros::Rate rate(10);
     setvbuf(stdout, nullptr, _IOLBF, 4096);
@@ -140,7 +140,7 @@ int main(int argc, char **argv) {
             rate.sleep();
             fflush(stdout);
         } catch (const std::exception &e) {
-            ROS_ERROR(e.what());
+            ROS_ERROR("%s", e.what());
             return 1;
         }
     }

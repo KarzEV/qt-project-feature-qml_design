@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+     <arg name="xacro_file" default="$(find auv_model)/urdf/URDF_model.xacro" />
+    <!-- URDF description -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg xacro_file)'" />
+   <!-- TF stuff -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="False"/>
+    </node>
+
+    <!-- Combine joint values -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+    <include file="$(find gazebo_terrain)/launch/terrain_1.launch"/>
+</launch>

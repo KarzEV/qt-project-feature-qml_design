@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="URDF_model">
+
+  <xacro:include filename="$(find auv_model)/urdf/URDF_model.gazebo" />
+  <xacro:include filename="$(find auv_model)/urdf/macros.xacro" />
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00053998 -0.0028509 -0.059824"
+        rpy="0 0 0" />
+      <mass
+        value="1325.8" />
+      <inertia
+        ixx="1521.3"
+        ixy="0.34914"
+        ixz="0.97373"
+        iyy="1523.1"
+        iyz="5.1412"
+        izz="75.038" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Mover">
+    <inertial>
+      <origin
+        xyz="-4.5379E-16 -0.01 0.3771"
+        rpy="0 0 0" />
+      <mass
+        value="65.33" />
+      <inertia
+        ixx="4.9294"
+        ixy="-1.3323E-15"
+        ixz="4.6961E-16"
+        iyy="4.9294"
+        iyz="-1.4503E-16"
+        izz="2.7844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Mover.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Mover.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Mover"
+    type="fixed">
+    <origin
+      xyz="0.0076926 -1.8797 -0.0063894"
+      rpy="-1.5708 0.87768 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Mover" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Hydroacoustics">
+    <inertial>
+      <origin
+        xyz="1.1169 -0.01 -0.095204"
+        rpy="0 0 0" />
+      <mass
+        value="69.401" />
+      <inertia
+        ixx="4.9889"
+        ixy="1.5968E-15"
+        ixz="-1.8064E-16"
+        iyy="1.0996"
+        iyz="-4.1772E-15"
+        izz="5.6585" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Hydroacoustics.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Hydroacoustics.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Hydroacoustics"
+    type="fixed">
+    <origin
+      xyz="0.026284 0 0.19247"
+      rpy="2.9544 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="Hydroacoustics" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Cap">
+    <inertial>
+      <origin
+        xyz="3.0375E-07 -1.3847E-06 -0.081591"
+        rpy="0 0 0" />
+      <mass
+        value="16.632" />
+      <inertia
+        ixx="0.28264"
+        ixy="5.444E-07"
+        ixz="-7.2505E-08"
+        iyy="0.28264"
+        iyz="-5.794E-07"
+        izz="0.42819" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Cap.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Cap.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Cap"
+    type="fixed">
+    <origin
+      xyz="0 1.9412 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Cap" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Superstructure">
+    <inertial>
+      <origin
+        xyz="-0.2205 -6.7012E-09 -1.0793"
+        rpy="0 0 0" />
+      <mass
+        value="31.921" />
+      <inertia
+        ixx="0.70867"
+        ixy="1.2981E-08"
+        ixz="-0.0067649"
+        iyy="0.90147"
+        iyz="3.1204E-08"
+        izz="0.41769" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Superstructure.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Superstructure.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Superstructure"
+    type="fixed">
+    <origin
+      xyz="-0.11997 -2.1932 -0.6333"
+      rpy="-1.3986 1.3807 -2.9663" />
+    <parent
+      link="base_link" />
+    <child
+      link="Superstructure" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Equipment">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Equipment.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://auv_model/meshes/Equipment.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Equipment"
+    type="fixed">
+    <origin
+      xyz="-0.058073 0 -0.30655"
+      rpy="-2.9544 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="Equipment" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

@@ -1,4 +1,34 @@
 <?xml version="1.0"?>
 <robot>
 
+  <gazebo reference="base_link">
+    <turnGravityOff>true</turnGravityOff>
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="Mover">
+    <turnGravityOff>true</turnGravityOff>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="Hydroacoustics">
+    <turnGravityOff>true</turnGravityOff>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="Cap">
+    <turnGravityOff>true</turnGravityOff>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="Superstructure">
+    <turnGravityOff>true</turnGravityOff>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <gazebo reference="Equipment">
+    <turnGravityOff>true</turnGravityOff>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
 </robot>

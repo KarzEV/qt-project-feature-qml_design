@@ -31,4 +31,45 @@
     <material>Gazebo/Black</material>
   </gazebo>
 
+  <gazebo reference="multibeam_echo_link">
+    <turnGravityOff>true</turnGravityOff>
+    <sensor type="ray" name="multibeam_echo">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.570796</min_angle>
+            <max_angle>0.570796</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>8</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.2</min_angle>
+            <max_angle>0.2</max_angle>
+          </vertical>
+
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_block_laser_controller" filename="libgazebo_ros_block_laser.so">
+        <updateRate>20</updateRate>
+        <topicName>/agv/pointcloud</topicName>
+        <frameName>multibeam_echo_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 </robot>

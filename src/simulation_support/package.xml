@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>simulation_support</name>
+  <version>0.1.0</version>
+  <description>Package with helpful nodes</description>
+
+  <maintainer email="ewegexa@gmail.com">Eugene Baranov</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>tf2</depend>
+
+  <export>
+  </export>
+</package>
